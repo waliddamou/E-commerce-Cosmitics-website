@@ -1,0 +1,112 @@
+{% include"header.html" %}
+<section class="content">
+
+          <!-- Default box -->
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ajouter un produit</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary" style="color: #3c8dbc;">
+                <!-- form start -->
+                <form role="form" action="{{ url_for('.AddProduct') }}" method="POST">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <h3><b>Nom</b></h3>
+                      <input type="text" class="form-control" name="nom" id="exampleInputEmail1" placeholder="Entrer le nom">
+                    </div>
+                    <div class="form-group">
+                      <h3><b>Description</b></h3>
+					           <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."></textarea>
+					           </div>
+                     <div class="form-group">
+                      <h3><b>Prix d'Achats</b></h3>
+                      <input type="text" class="form-control" name="BuyPrice" id="exampleInputEmail1" placeholder="Entrer le prix d'Achats">
+                    </div>
+                    <div class="form-group">
+                      <h3><b>Prix de Vente</b></h3>
+                      <input type="text" class="form-control" name="BuyPrice" id="exampleInputEmail1" placeholder="Entrer le prix d'Achats">
+                    </div>
+                    <div class="form-group">
+                    <h3><b>Catégories</b></h3>
+                    <select class="form-control select2">
+                      <option selected="selected">Alabama</option>
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <h3><b>Sous Catégories</b></h3>
+                    <select class="form-control select2">
+                      <option selected="selected">Alabama</option>
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  
+                  </div><!-- /.form-group -->
+                  
+                    <div class="form-group">
+                      <h3><b>Photos</b></h3>
+                      <input type="file" name="file[]" multiple="" id="gallery-photo-add">
+                      <p class="help-block">Ajouter des photos</p>
+                      <div class="gallery"></div>
+                    </div>	
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer text-center">
+                    <button type="submit" class="btn btn-lg btn-primary col-md-12">Ajouter</button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+            </div><!-- /.box-body -->
+            <!-- /.box-footer-->
+          </div><!-- /.box -->
+
+        </section><!-- /.content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(function($) {
+    // Multiple images preview in browser
+    $.noConflict();
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML("<img style='width: 50px; height: 50px; border-radius: 50%;'>"+"&nbsp; &nbsp; &nbsp;")).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+</script>
+
+{% include"footer.html" %}

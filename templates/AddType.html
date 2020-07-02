@@ -1,0 +1,82 @@
+{% include"header.html" %}
+<section class="content">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages%}
+            <div class="alert alert-{{ category }} alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4>  <i class="icon fa fa-check"></i> Alert!</h4>
+              {{message}}
+            </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ajouter une Catégorie</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary" style="color: #3c8dbc;">
+                <!-- form start -->
+                <form role="form" action="{{ url_for('.AddType') }}" method="POST">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <h3><b>Nom de type</b></h3>
+                      <input type="text" class="form-control" name="name" placeholder="Entrer le nom" required="">
+                    </div>
+                    <div class="form-group">
+                    {% if Categories %}
+                      <h3><b>La Catégorie Mére</b></h3>
+                      <select class="form-control" name="category">
+                        {% for i in Categories %}
+                        <option value="{{i.id}}">{{i.Name}}</option>
+                        {% endfor %}
+                      </select>
+                    {% endif %}
+                    </div>
+                    <div class="form-group">
+                    {% if SubCategories %}
+                      <h3><b>La Sous Catégorie</b></h3>
+                      <select class="form-control" name="subcategory">
+                        {% for i in SubCategories %}
+                        <option value="{{i.id}}">{{i.Name}}</option>
+                        {% endfor %}
+                      </select>
+                    {% endif %}
+                    </div>
+                 
+
+                  <div class="box-footer text-center">
+                    <button type="submit" class="btn btn-lg btn-primary col-md-12">Ajouter</button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+            </div><!-- /.box-body -->
+            <!-- /.box-footer-->
+          </div><!-- /.box -->
+      </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+        
+
+
+
+
+
+
+{% include"footer.html" %}

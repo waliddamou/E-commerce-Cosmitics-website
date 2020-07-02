@@ -1,0 +1,58 @@
+{% include"header.html" %}
+<section class="content">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages%}
+            <div class="alert alert-{{ category }} alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4>  <i class="icon fa fa-check"></i> Alert!</h4>
+              {{message}}
+            </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+           <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Importer Tous les produits qui existe dans le logiciel</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary" style="color: #3c8dbc;">
+                <!-- form start -->
+                <form role="form" action="{{ url_for('.AddSubCategory') }}" method="POST" enctype="multipart/form-data">
+                  <input  class="btn bg-orange btn-flat margin" type="file" name="upload">
+				<button class="btn btn-lg btn-danger" type="submit">importer</button>
+
+
+                  <div class="box-footer text-center">
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+            </div><!-- /.box-body -->
+            <!-- /.box-footer-->
+          </div><!-- /.box -->
+      </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+        
+
+
+
+
+
+
+{% include"footer.html" %}

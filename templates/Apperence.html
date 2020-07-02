@@ -1,0 +1,105 @@
+{% include"header.html" %}
+<link href="{{url_for('static',filename='css/image-picker.css') }}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="{{url_for('static',filename='js/image-picker.js') }}"></script>
+<style type="text/css">
+	img:not([data-img-src]) {
+   width:200px;
+   height:200px;
+}
+</style>
+{% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages%}
+            <div class="alert alert-{{ category }} alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4>  <i class="icon fa fa-check"></i> Alert!</h4>
+              {{message}}
+            </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+<section class="content">
+		<form action="{{ url_for('.Apperences') }}" method="post" enctype="multipart/form-data">
+          <!-- Default box -->
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Apparence</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+            <section class="content">
+              <div class="form-groupe">
+              <label>Titre</label>
+              <input type="text" name="title" class="form-control input-lg" placeholder="Entrer le titre">
+              <label>Déscription</label>
+              <textarea name="description" class="form-control" rows="3" placeholder="Enter">
+                
+              </textarea>
+              <label>Ajouter des images au Slide</label>
+              <input type="file" name="files" multiple="" id="gallery-photo-add">
+              <div class="gallery"></div>
+            </div>
+              <hr style="color: red">
+      <h3>Nouveau Produits (Séléctionner 3)</h3>
+				<select class="image-picker" name="slide" multiple="">
+					{% if slidephotos %}
+  					<optgroup label="">
+
+					{% for i in slidephotos %}
+  					 <option data-img-src="{{url_for('static', filename='Uploaded_images/'+i)}}" value="{{i}}" >PlaceIMG 1
+  					 </option>
+  					{% endfor %}
+
+  					</optgroup>
+  					
+  					{% endif %}
+
+				</select>
+			</section>
+      <div class="container text-center">
+			<button type="submit" class="btn btn-lg btn-primary">Enregistrer</button>
+			</div>
+		</div>
+		
+	</div></form>
+</section>
+<script type="text/javascript">
+	$(".image-picker").imagepicker()
+</script>
+<script>
+  $(function($) {
+    // Multiple images preview in browser
+    $.noConflict();
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML("<img style='width: 50px; height: 50px; border-radius: 50%;'>"+"&nbsp; &nbsp; &nbsp;")).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+</script>
+
+
+</div>
+</div>
+</section>
+{% include"footer.html" %}

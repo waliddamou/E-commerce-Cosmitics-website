@@ -1,0 +1,517 @@
+{% include"site-header.html" %}
+
+    <!-- Header Area End -->
+    </div>
+    <!-- Welcome Area Start -->
+    <section class="welcome-area">
+        {% if not apperences: %}
+        <div class="welcome-slides owl-carousel">
+            <!-- Single Welcome Slide -->
+            <div class="single-welcome-slide bg-img" style="background-image: url(./static/img/bg-img/16.jpg);">
+                <!-- Welcome Content -->
+                <div class="welcome-content h-100">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <!-- Welcome Text -->
+                            <div class="col-12 col-md-9 col-lg-6">
+                                <div class="welcome-text">
+                                    <h2 data-animation="fadeInUp" data-delay="100ms">We Care About <br> Your Hair</h2>
+                                    <p data-animation="fadeInUp" data-delay="400ms">“Discover your own style. Don't try to repeat what has already been written - have the courage to do your own thing and don't be afraid to do something different.”</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Welcome Slide -->
+            <div class="single-welcome-slide bg-img" style="background-image: url(./static/img/bg-img/16.jpg);">
+                <!-- Welcome Content -->
+                <div class="welcome-content h-100">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <!-- Welcome Text -->
+                            <div class="col-12 col-md-9 col-lg-6">
+                                <div class="welcome-text">
+                                    <h2 data-animation="fadeInUp" data-delay="100ms">We Care About <br> Your Hair</h2>
+                                    <p data-animation="fadeInUp" data-delay="400ms">“Discover your own style. Don't try to repeat what has already been written - have the courage to do your own thing and don't be afraid to do something different.”</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  
+  <div class="carousel-inner">
+    {% set list1=apperences.SlidePhoto.split(';') %}
+    {% for i in list1 %}
+        {% if i != '' %}
+        {{list1.index(list1[0])}}
+    <div class="carousel-item {% if i == list1[0] %} active {% endif %}">
+      <img class="d-block w-100" src="{{url_for('static',filename='/Uploaded_images/'+i)}}" alt="First slide">
+    </div>
+        {% endif %}
+    {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+            
+        {% endif %}
+    </section>
+    <!-- Welcome Area End -->
+    <div class="container"><p></p></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                <img src="{{url_for('static',filename='icons/algerie.png')}}">
+                <p>Laivraison partout en algérie</p>
+            </div>
+            <div class="col-sm-3 text-center">
+                <img src="{{url_for('static',filename='icons/domicile.png')}}">
+                <p>Livraison à domicile possible</p>
+            </div>
+            <div class="col-sm-3 text-center">
+                <img src="{{url_for('static',filename='icons/paiement.png')}}">
+                <p>Paiement à la réception</p>
+            </div>
+            <div class="col-sm-3 text-center">
+                <img src="{{url_for('static',filename='icons/livraison.png')}}">
+                <p>Laivraison dans 48h</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Border -->
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>TOP <b style="color: #bfa37a;">VENTES</b></h2>
+            <hr style="background-color: #bfa37a;">
+
+            
+        </div>
+    </div>
+</div>
+{% if topsales %}
+{% set firstlist = topsales[4:] %}
+{% set secondlist = topsales[:4] %}
+<div class="container">
+            <div class="row blog">
+                <div class="col-md-12">
+                    <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Carousel items -->
+
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    {% for i in firstlist: %}
+                                    <div class="col-md-3">
+                                        <a href="#">
+                                            <img src="{{ url_for('static',filename='/Uploaded_images/')+i.Photos }}" alt="Image" style="max-width:100%;">
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                                <!--.row-->
+                            </div>
+                            <!--.item-->
+
+                            <div class="carousel-item">
+                                <div class="row">
+                                    {% for i in secondlist %}
+                                    <div class="col-md-3">
+                                        <a href="#">
+                                            <img src="{{ url_for('static',filename='/Uploaded_images/')+i.Photos }}" alt="Image" style="max-width:100%;">
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                   
+                                    
+                                    
+                                </div>
+                                <!--.row-->
+                            </div>
+                            <!--.item-->
+
+                        </div>
+                        <!--.carousel-inner-->
+                    </div>
+                    <!--.Carousel-->
+
+                </div>
+            </div>
+</div>
+<script type="text/javascript">
+    $('#blogCarousel').carousel({
+                interval: 1000
+        });
+</script>
+{% endif %}
+
+
+    <!-- Our Service Area Start -->
+    <!-- Border -->
+    <div class="container">
+        <div class="border-top mt-3"></div>
+    </div>
+
+    <!-- Blog Area Start -->
+    {% if topsales %}
+    <section class="akame-blog-area section-padding-80-0 clearfix">
+        <div class="container">
+            <div class="row">
+                <!-- Section Heading -->
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <h2>Nouveaux Produits !</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% set secondlist = topsales[:3] %}
+                {% for i in secondlist %}
+                <!-- Single Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="post-thumbnail">
+                            <a href="{{url_for('.ProductView',id=i.id)}}"><img src="{{ url_for('static',filename='Uploaded_images/')+i.Photos }}" alt=""></a>
+                        </div>
+                        <div class="post-content">
+                            <a href="#" class="post-title">{{i.Name}}</a>
+                            
+                            <p>{{i.Description}}</p>
+                        </div>
+                    </div>
+                </div><!-- Single Post Area -->
+                {% endfor %}
+                <!-- Single Post Area -->
+                
+
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- Blog Area End -->
+
+    <!-- Call To Action Area Start -->
+   
+    <!-- brand slider -->
+    
+    <!-- Footer Area Start -->
+    <footer class="footer-area section-padding-80-0">
+        <div class="container">
+            <div class="row justify-content-between">
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single-footer-widget mb-80 text-center">
+                        <!-- Footer Logo -->
+                        <h1 style="color: #ebc57b;"><strong>BODY</strong></h1><small><b>CARE</b></small>
+
+                        <p class="mb-30">Site de vente en ligne dédié aux produits de cosmétique et d’hygiène corporelle construit depuis la France et l’Algérie par des passionnés de la beauté et du soin. Retrouvez nos conseils et tendances maquillage, coiffure, mode, beauté, bien-être ainsi que tous nos bons plans cosmétiques ! Tout votre univers beauté en un clic au meilleur prix et avec le plus grand choix d’Algérie.</p>
+
+                        <!-- Copywrite Text -->
+                        <div class="copywrite-text">
+                            <p> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This web site is made by <a href="#" target="_blank">Smart box solution</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <div class="single-footer-widget mb-80 text-center">
+                        <!-- Widget Title -->
+                        <h4 class="widget-title">Horaire:</h4>
+
+                        <!-- Open Times -->
+                        <div class="open-time text-center">
+                            <p>Samedi de 8.00 - 17.00</p>
+                            <p>jeudi de 8.00 - 17.00</p>
+                        </div>
+
+                        <!-- Social Info -->
+                        <div class="social-info text-center">
+                            <a href="https://www.facebook.com/Perfumes-Krismabody-Care-KBC-132615587263652" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-md-4 col-xl-3">
+                    <div class="single-footer-widget mb-80 text-center">
+
+                        <!-- Widget Title -->
+                        <h4 class="widget-title">Contacter nous</h4>
+
+                        <!-- Contact Address -->
+                        <div class="contact-address">
+                            <p>Tel: 0558137305</p>
+                            <p>E-mail: mohamedmazouni667@gmail.com</p>
+                            <p>Address: Rue de fouka, kolea. wilaya de Tipaza</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $(".megamenu").on("click", function(e) {
+        e.stopPropagation();
+    });
+});
+
+    </script>
+    <!-- Footer Area End -->
+
+    <!-- All JS Files -->
+    <!-- jQuery -->
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <!-- Popper -->
+    <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <!-- All Plugins -->
+    <script src="{{ url_for('static',filename='js/akame.bundle.js') }}"></script>
+    <!-- Active -->
+    <script src="{{ url_for('static',filename='js/default-assets/active.js') }}"></script>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    // ************************************************
+// Shopping Cart API
+// ************************************************
+
+var shoppingCart = (function() {
+  // =============================
+  // Private methods and propeties
+  // =============================
+  cart = [];
+  
+  // Constructor
+  function Item(productname,name, price, count) {
+    this.productname=productname;
+    this.name = name;
+    this.price = price;
+    this.count = count;
+  }
+  
+  // Save cart
+  function saveCart() {
+    sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
+  }
+  
+    // Load cart
+  function loadCart() {
+    cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
+  }
+  if (sessionStorage.getItem("shoppingCart") != null) {
+    loadCart();
+  }
+  
+
+  // =============================
+  // Public methods and propeties
+  // =============================
+  var obj = {};
+  
+  // Add to cart
+  obj.addItemToCart = function(productname,name, price, count) {
+    for(var item in cart) {     
+      if(cart[item].name === name) {
+        cart[item].count ++;
+        saveCart();
+        return;
+      }
+    }
+    var item = new Item(productname,name, price, count);
+    cart.push(item);
+    saveCart();
+  }
+  // Set count from item
+  obj.setCountForItem = function(name, count) {
+    for(var i in cart) {
+      if (cart[i].name === name) {
+        cart[i].count = count;
+        break;
+      }
+    }
+  };
+  // Remove item from cart
+  obj.removeItemFromCart = function(productname) {
+      for(var item in cart) {
+        if(cart[item].productname === productname) {
+          cart[item].count --;
+          if(cart[item].count === 0) {
+            cart.splice(item, 1);
+          }
+          break;
+        }
+    }
+    saveCart();
+  }
+
+  // Remove all items from cart
+  obj.removeItemFromCartAll = function(name) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart.splice(item, 1);
+        break;
+      }
+    }
+    saveCart();
+  }
+
+  // Clear cart
+  obj.clearCart = function() {
+    cart = [];
+    saveCart();
+  }
+
+  // Count cart 
+  obj.totalCount = function() {
+    var totalCount = 0;
+    for(var item in cart) {
+      totalCount += cart[item].count;
+    }
+    return totalCount;
+  }
+
+  // Total cart
+  obj.totalCart = function() {
+    var totalCart = 0;
+    for(var item in cart) {
+      totalCart += cart[item].price * cart[item].count;
+    }
+    return Number(totalCart.toFixed(2));
+  }
+
+  // List cart
+  obj.listCart = function() {
+    var cartCopy = [];
+    for(i in cart) {
+      item = cart[i];
+      itemCopy = {};
+      for(p in item) {
+        itemCopy[p] = item[p];
+
+      }
+      itemCopy.total = Number(item.price * item.count).toFixed(2);
+      cartCopy.push(itemCopy)
+    }
+    return cartCopy;
+  }
+
+  // cart : Array
+  // Item : Object/Class
+  // addItemToCart : Function
+  // removeItemFromCart : Function
+  // removeItemFromCartAll : Function
+  // clearCart : Function
+  // countCart : Function
+  // totalCart : Function
+  // listCart : Function
+  // saveCart : Function
+  // loadCart : Function
+  return obj;
+})();
+
+
+// *****************************************
+// Triggers / Events
+// ***************************************** 
+// Add item
+$('.add-to-cart').click(function(event) {
+  event.preventDefault();
+  var productname = $(this).data('id');
+  var name = $(this).data('name');
+  var price = Number($(this).data('price'));
+  shoppingCart.addItemToCart(productname,name, price, 1);
+  displayCart();
+});
+
+// Clear items
+$('.clear-cart').click(function() {
+  shoppingCart.clearCart();
+  displayCart();
+});
+
+
+function displayCart() {
+  var cartArray = shoppingCart.listCart();
+  var output = "";
+  for(var i in cartArray) {
+    output += "<tr>"
+        + "<td>" + cartArray[i].productname + "</td>"
+       
+      + "<td>(" + cartArray[i].price + ")</td>"
+      + "<td><div class='input-group'>"
+      + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
+      + "</div></td>"
+      + "<td><button class='delete-item btn btn-danger' data-name="+cartArray[i].name +">X</button></td>"
+      + " = " 
+      + "<td>" + cartArray[i].total + "</td>" 
+      +  "</tr>";
+  }
+  $('.show-cart').html(output);
+  $('.total-cart').html(shoppingCart.totalCart());
+  $('.total-count').html(shoppingCart.totalCount());
+}
+
+// Delete item button
+
+$('.show-cart').on("click", ".delete-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.removeItemFromCartAll(name);
+  displayCart();
+})
+
+
+// -1
+$('.show-cart').on("click", ".minus-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.removeItemFromCart(name);
+  displayCart();
+})
+// +1
+$('.show-cart').on("click", ".plus-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.addItemToCart(name);
+  displayCart();
+})
+
+// Item count input
+$('.show-cart').on("change", ".item-count", function(event) {
+   var name = $(this).data('name');
+   var count = Number($(this).val());
+  shoppingCart.setCountForItem(name, count);
+  displayCart();
+});
+
+displayCart();
+
+</script>

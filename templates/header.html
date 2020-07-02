@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ma Boutique | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.4 -->
+    <link href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="{{ url_for('static',filename='plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="{{ url_for('static',filename='dist/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="{{ url_for('static',filename='dist/css/skins/_all-skins.min.css') }}" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+       
+      <header class="main-header">
+
+        <!-- Logo -->
+        <a href="{{url_for('.index')}}" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>Body Care</b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Body Care</b> </span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+
+          <!-- Navbar Right Menu -->
+
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+              <!-- Messages: style can be found in dropdown.less-->
+              
+              <!-- Notifications: style can be found in dropdown.less -->
+              <!-- Tasks: style can be found in dropdown.less -->
+
+              <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+                  <span class="label label-danger">{{orders}}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">Vous avez {{orders}} Commandes</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      {% for i in ord %}
+                      <li><!-- Task item -->
+                        <a href="{{url_for('.Orders')}}">
+                        <div class="container">
+                        <h5>ID:{{i.id}}</h5>
+                        <h5>Num:{{i.Phone}}</h5>                          
+                        </div>
+                        </a>
+                      </li><!-- end task item -->
+                      {%endfor%}
+                      
+                      
+                    </ul>
+                  </li>
+                  <li class="footer">
+                    <a href="#">View all tasks</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                {% if request.endpoint =="Blueprints.Dashboard" %}
+                <button class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" disabled>Activer les notification</button>
+                <section class="subscription-details js-subscription-details is-invisible">
+                <pre hidden=""><code class="js-subscription-json"></code></pre>
+                {% endif %}
+                
+              </section>
+                
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              
+            </ul>
+
+          </div>
+
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="{{ url_for('static',filename='dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+              <p>Body Care</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+
+            <li class="active treeview">
+              <a href="#">
+
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+
+                <li class="active"><a href="{{ url_for('.Dashboard') }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                <li class="active"><a href="{{ url_for('.index') }}"><i class="fa fa-circle-o"></i> Aller sur le site</a></li>
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                <span>Gestion des Catégories</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url_for('.AddCategory') }}"><i class="fa fa-circle-o"></i> Ajouter une catégorie</a></li>
+                <li><a href="{{ url_for('.ManageCategories') }}"><i class="fa fa-circle-o"></i>Mes Catégories</a></li>
+              </ul>
+            </li>
+             <li class="treeview">
+              <a href="#">
+                <i class="fa  fa-tasks" aria-hidden="true"></i>
+                <span>Gestion des Sous Catégories</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url_for('.AddSubCategory') }}"><i class="fa fa-circle-o"></i> Ajouter une sous catégorie</a></li>
+                <li><a href="{{ url_for('.ManageSubCategories') }}"><i class="fa fa-circle-o"></i>Mes Sous Catégories</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-server" aria-hidden="true"></i>
+                <span>Gestion des Types</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url_for('.AddType') }}"><i class="fa fa-circle-o"></i> Ajouter un type</a></li>
+                <li><a href="{{ url_for('.ManageTypes') }}"><i class="fa fa-circle-o"></i>Tous les types</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Produits</span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url_for('.AddProduct') }}"><i class="fa fa-circle-o"></i> Ajouter un produit</a></li>
+                <li><a href="{{ url_for('.AllProducts') }}"><i class="fa fa-circle-o"></i> Mes Produits</a></li>
+                <li><a href="{{ url_for('.Stats') }}"><i class="fa fa-circle-o"></i> Statistiques</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dropbox" aria-hidden="true"></i>
+                <span>Commandes</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url_for('.Orders') }}"><i class="fa fa-circle-o"></i> Commandes</a></li>
+                <li><a href="{{ url_for('.Orders') }}"><i class="fa fa-circle-o"></i> Ancien Commandes</a></li>
+                <li><a href="{{ url_for('.AddOrders') }}"><i class="fa fa-circle-o"></i>Créer</a></li>
+                
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-laptop"></i>
+                <span>Gestion des utilisateurs</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ url_for('.AddUser') }}"><i class="fa fa-user-plus"></i> Ajouter un utilisateur</a></li>
+                <li><a href="{{url_for('.ManageUsers')}}"><i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gears"></i> <span>Paramètres</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url_for('.Apperences')}}"><i class="fa fa-circle-o"></i> Paramètres de site</a></li>
+                <li><a href="{{url_for('.importe')}}"><i class="fa fa-circle-o"></i>  Importer</a></li>
+              </ul>
+            </li>
+            <li class="header">Déconnexion</li>
+            <li><a href="{{ url_for('.logout') }}"><i class="fa fa-circle-o text-red"></i> <span>Déconnexion</span></a></li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Dashboard
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+          </ol>
+        </section>
+        <!-- Main content -->
+      

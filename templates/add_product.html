@@ -1,0 +1,140 @@
+{% include"header.html" %}
+<section class="content">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages%}
+            <div class="alert alert-{{ category }} alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4>  <i class="icon fa fa-check"></i> Alert!</h4>
+              {{message}}
+            </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ajouter un produit</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="box box-primary" style="color: #3c8dbc;">
+                <!-- form start -->
+                <form role="form" action="{{ url_for('.AddProduct') }}" method="POST" enctype="multipart/form-data">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <h3><b>Nom</b></h3>
+                      <input type="text" class="form-control" name="name" placeholder="Entrer le nom" required="">
+                    </div>
+                    <div class="form-group">
+                      <h3><b>Description</b></h3>
+					           <textarea class="form-control" name="description" rows="3" placeholder="Enter ..." required=""></textarea>
+					           </div>
+                     <div class="form-group">
+                      <h3><b>Prix d'Achats</b></h3>
+                      <input type="text" class="form-control" name="buyprice" placeholder="Entrer le prix d'Achats" required="">
+                    </div>
+                    <div class="form-group">
+                      <h3><b>Prix de Vente</b></h3>
+                      <input type="text" class="form-control" name="sellprice" placeholder="Entrer le prix d'Achats" required="">
+                    </div>
+                    <div class="form-group">
+                      <h3><b>Quantité</b></h3>
+                      <input type="text" class="form-control" name="qte" placeholder="Entrer la Quantité" required="">
+                    </div>
+                    <div class="form-group">
+                      <h3><b>Quantité Seuil</b></h3>
+                      <input type="text" class="form-control" name="qtealert" placeholder="Entrer la Quantité" required="">
+                    </div>
+                    {% if categories %}
+                    
+                    <div class="form-group">
+                    <h3><b>Catégories</b></h3>
+                    <select class="form-control select2" name="category" required="">
+                      {% for i in categories %}
+                      <option selected="selected" value="{{i.id}}">{{i.Name}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  
+                  {% endif %}
+                  
+                  {% if subcategories %}
+                  <div class="form-group">
+                    <h3><b>Sous catégorie</b></h3>
+                    <select class="form-control select2" name="subcategory" required="">
+                    {% for i in subcategories %}
+                    <option selected="selected" value="{{i.id}}">{{i.Name}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                  {% endif %}
+
+                  {% if types %}
+                  <div class="form-group">
+                    <h3><b>Type</b></h3>
+                    <select class="form-control select2" name="types" required="">
+                    {% for k in types %}
+                    <option selected="selected" value="{{k.id}}">{{k.Name}}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                  {% endif %}
+                  
+                    <div class="form-group">
+                      <h3><b>Photos</b></h3>
+                      <input type="file" name="files"  id="gallery-photo-add" required="">
+                      <p class="help-block">Ajouter des photos</p>
+                      <div class="gallery"></div>
+                    </div>	
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer text-center">
+                    <button type="submit" class="btn btn-lg btn-primary col-md-12">Ajouter</button>
+                  </div>
+                </form>
+              </div><!-- /.box -->
+
+            </div><!-- /.box-body -->
+            <!-- /.box-footer-->
+          </div><!-- /.box -->
+
+        </section><!-- /.content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(function($) {
+    // Multiple images preview in browser
+    $.noConflict();
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML("<img style='width: 50px; height: 50px; border-radius: 50%;'>"+"&nbsp; &nbsp; &nbsp;")).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+</script>
+
+{% include"footer.html" %}

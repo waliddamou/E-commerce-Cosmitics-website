@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+    <!-- Title -->
+    <title>BODY CARE</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static',filename='img/core-img/favicon.ico') }}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+   
+   
+
+
+    <style type="text/css">
+.blog .carousel-indicators {
+    left: 0;
+    top: auto;
+    bottom: -40px;
+
+}
+
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.blog .carousel-indicators .active {
+background: #707070;
+}
+.show-cart li {
+  display: flex;
+}
+.card {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+.megamenu-li {
+    position: static;
+}
+
+.megamenu {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 15px;
+}
+
+
+.carousel {
+    margin: 50px auto;
+    padding: 0 70px;
+}
+.carousel .item {
+    min-height: 330px;
+    text-align: center;
+    overflow: hidden;
+}
+.carousel .item .img-box {
+    height: 160px;
+    width: 100%;
+    position: relative;
+}
+.carousel .item img {   
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.carousel .item h4 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.carousel .item .btn {
+    color: #333;
+    border-radius: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-top: 5px;
+    line-height: 16px;
+}
+.carousel .item .btn:hover, .carousel .item .btn:focus {
+    color: #fff;
+    background: #000;
+    border-color: #000;
+    box-shadow: none;
+}
+.carousel .item .btn i {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.carousel .thumb-wrapper {
+    text-align: center;
+}
+.carousel .thumb-content {
+    padding: 15px;
+}
+.carousel .carousel-control {
+    height: 100px;
+    width: 40px;
+    background: none;
+    margin: auto 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+.carousel .carousel-control i {
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -16px 0 0 0;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    font-weight: bold;
+}
+.carousel .item-price {
+    font-size: 13px;
+    padding: 2px 0;
+}
+.carousel .item-price strike {
+    color: #999;
+    margin-right: 5px;
+}
+.carousel .item-price span {
+    color: #86bd57;
+    font-size: 110%;
+}
+.carousel .carousel-control.left i {
+    margin-left: -3px;
+}
+.carousel .carousel-control.left i {
+    margin-right: -3px;
+}
+.carousel .carousel-indicators {
+    bottom: -50px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+    width: 10px;
+    height: 10px;
+    margin: 4px;
+    border-radius: 50%;
+    border-color: transparent;
+}
+.carousel-indicators li {   
+    background: rgba(0, 0, 0, 0.2);
+}
+.carousel-indicators li.active {    
+    background: rgba(0, 0, 0, 0.6);
+}
+.star-rating li {
+    padding: 0;
+}
+.star-rating i {
+    font-size: 14px;
+    color: #ffc000;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <div class="top-header-area" style="background-color: #bfa37a; color: black;">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-5">
+                        <div class="top-header-content">
+                            <p>Bienvenu sur BODY CARE</p>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="top-header-content text-right">
+                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Horaire: 8:00 À 17:00 <span class="mx-2"></span> | <span class="mx-2"></span> <i class="fa fa-phone" aria-hidden="true"></i> 0558137305</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center"><a class="navbar-brand" href="/">
+                                 <h1 style="color: #ebc57b;"><strong>BODY CARE</strong></h1><small><b>Tout votre univers beauté en un clic au meilleur prix et avec le plus grand choix d’Algérie</b></small>
+                             </a>
+                         </div>
+
+                         
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-12 text-right">
+
+   
+     <button type="button" data-toggle="modal" data-target="#cart" class="btn btn-outline" style="   font-size:40px;color: #bfa37a;"><i class="fa fa-shopping-bag"><p class="font-weight-bold label pull-right total-count" style="color: red;"></p></i></button>
+     {% if not current_user.is_authenticated %}
+     <a href="{{ url_for('.Connexion') }}" class="btn" style="background-color: #bfa37a; color: white;"> Connexion </a>
+     {% else %}
+     <a href="{{ url_for('.Dashboard') }}" class="btn" style="background-color: #bfa37a; color: white;"> Tableau de Bord </a>
+     
+     {% endif %}
+
+   <nav class="navbar navbar-expand-xl navbar-light bg-light rounded" >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+          </button>
+    <div class="collapse navbar-collapse text-center" id="navbar" >
+     <ul class="navbar-nav text-center">
+        {% if Categories%}
+        {% for i in Categories %}
+        <li class="nav-item dropdown megamenu-li text-center">
+       <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 15px; color: #bfa37a;"><b>{{i.Name}}</b></a>
+       <div class="dropdown-menu megamenu" aria-labelledby="dropdown01">
+        <div class="row">
+         {% for k in SubCategories %}
+         {% if k.CategoryId==i.id %}
+         <div class="col-sm-6 col-lg-3">
+          <h5><b>{{k.Name}}</b></h5>
+          {% for z in types %}
+          {% if z.SubCategoryId==k.id %}
+          <a class="dropdown-item" href="{{url_for('.ViewTypeProducts',category=i.Name,subcategory=k.Name,types=z.Name,x=1)}}">-{{z.Name}}</a>
+          {% endif %}
+          {% endfor %}
+         </div>
+         {% endif %}
+        {% endfor %}
+        </div>
+       </div>
+      </li>
+     </ul>
+     {% endfor %}
+     {% endif %}
+    </div>
+   </nav>
+  </div>
+ </div>
+</div>
+
+</header>
+<!-- Modal -->
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Panier</h5>
+        <form action="" method="post">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="show-cart table">
+          
+        </table>
+        <div class="text-center" style="color: green;">Total: DZD <b><span class="total-cart"></span></b></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" style="background-color: #bfa37a; color: white;">Fermer</button>
+        <button type="button" class="clear-cart btn" style="background-color: #bfa37a; color: white;">Vider le Panier</button>
+        <button type="button" class="btn" onclick="putjson()" data-toggle="modal" data-target="#exampleModal" style="background-color: #bfa37a; color: white;">Valider Mes Achats</button>
+        
+    </form>
+      </div>
+    </div>
+  </div>
+</div> 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouvelle Commande</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nom:</label>
+            <input type="text" class="form-control" name="name" placeholder="Entrer le Nom" required="">
+            <label for="recipient-name" class="col-form-label">Prénom:</label>
+            <input type="text" class="form-control" name="lastname" placeholder="Enter le Prénom" required="">
+            <label for="recipient-name">Numéro Téléphone°:</label>
+            <input type="text" class="form-control"  name="phone" placeholder="Entrer le Numéro" required="">
+            <label for="recipient-name">Wilaya:</label>
+            <select class="form-control" name="wilaya" required="">
+                <option value="Adrar" selected="">Adrar</option>
+                <option value="Chlef">Chlef</option>
+                <option value="Laghouat">Laghouat</option>
+                <option value="Oum El Bouaghi">Oum El Bouaghi</option>
+                <option value="Batna">Batna</option>
+                <option value="Béjaïa">Béjaïa</option>
+                <option value="Biskra">Biskra</option>
+                <option value="Béchar">Béchar</option>
+                <option value="Blida">Blida</option>
+                <option value="Bouira">Bouira</option>
+                <option value="Tamanrasset">Tamanrasset</option>
+                <option value="Tébessa">Tébessa</option>
+                <option value="Tlemcen">Tlemcen</option>
+                <option value="Tiaret">Tiaret</option>
+                <option value="Tizi Ouzou">Tizi Ouzou</option>
+                <option value="Alger">Alger</option>
+                <option value="Djelfa">Djelfa</option>
+                <option value="Jijel">Jijel</option>
+                <option value="Sétif">Sétif</option>
+                <option value="Saïda">Saïda</option>
+                <option value="Skikda">Skikda</option>
+                <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
+                <option value="Annaba">Annaba</option>
+                <option value="Guelma">Guelma</option>
+                <option value="Constantine">Constantine</option>
+                <option value="Médéa">Médéa</option>
+                <option value="Mostaganem">Mostaganem</option>
+                <option value="M’Sila">M’Sila</option>
+                <option value="Mascara">Mascara</option>
+                <option value="Ouargla">Ouargla</option>
+                <option value="Oran">Oran</option>
+                <option value="El Bayadh">El Bayadh</option>
+                <option value="Illizi">Illizi</option>
+                <option value="Bordj Bou Arreridj">Bordj Bou Arreridj</option>
+                <option value="Boumerdès">Boumerdès</option>
+                <option value="El Tarf">El Tarf</option>
+                <option value="Tindouf">Tindouf</option>
+                <option value="Tissemsilt">Tissemsilt</option>
+                <option value="El Oued">El Oued</option>
+                <option value="Khenchela">Khenchela</option>
+                <option value="Souk Ahras">Souk Ahras</option>
+                <option value="Tipaza">Tipaza</option>
+                <option value="Mila">Mila</option>
+                <option value="Aïn Defla">Aïn Defla</option>
+                <option value="Naâma">Naâma</option>
+                <option value="Aïn Témouchent">Aïn Témouchent</option>
+                <option value="Ghardaia">Ghardaia</option>
+                <option value="Relizane">Relizane</option>
+            </select>
+            <label for="recipient-name">Commune:</label>
+            <input type="text" class="form-control"  name="Commune" placeholder="Entrer la Commune" required="">
+            
+            <label for="recipient-name" class="col-form-label">Adresse</label>
+            <input type="text" class="form-control" id="result"  name="adress" placeholder="Entrer l'Adresse" required="">
+          </div>
+         
+
+        
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="clear-cart btn btn-primary">Valider</button>
+        <input type="text" name="test" id="test" hidden="" value="">
+      </div>
+      </form>    
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function putjson(){
+        document.getElementById('test').value=sessionStorage.getItem('shoppingCart');
+        console.log(document.getElementById('test').value)
+    }
+    function closefirst(){
+        $('#cart').modal('hide');
+    }
+    function opensecond(){
+        $('#order').modal('show');
+        console.log(obj);  
+    }
+</script>

@@ -1,0 +1,53 @@
+{% include"header.html" %}
+<section class="content">
+
+          <!-- Default box -->
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Les information de la Commande</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              <section class="content">
+              	<h4><b style="color: #3c8dbc;">Nom :</b> {{Orders.FirstName}}</h4>
+              	<h4><b style="color: #3c8dbc;">Prénom :</b> {{ Orders.LastName }}</h4>
+              	<h4><b style="color: #3c8dbc;">Numéro téléphone :</b> {{Orders.Phone}}</h4>
+                <h4><b style="color: #3c8dbc;">Wilaya :</b> {{Orders.wilaya}}</h4>
+                <h4><b style="color: #3c8dbc;">Commune :</b> {{Orders.commune}}</h4>
+                <h4><b style="color: #3c8dbc;">Addresse :</b> {{Orders.Address}}</h4>
+              	<div class="container-fluid">
+              		{% for i in ProductList %}
+              		<div class="row">
+              			
+              			<div class="col-sm-4">
+              				{% set list = i.Photos.split(';')[0] %}
+              				<img src="{{url_for('static',filename='Uploaded_images/'+list)}}" style="width: 100px; height: 100px;">
+              			</div>
+              			<div class="col-sm-4">
+              				<h4>{{i.Name}}</h4>
+              			</div>
+              			{% for k in ProductDetailes %}
+              			<div class="col-sm-4">
+              				{% if k["name"] == i.id  %}<h4>Quantité: {{k["count"]}} </h4>{% endif %}
+              			</div>
+              			<div class="col-sm-4">
+              				{% if k["name"] == i.id  %}<h4>Prix unitaire: {{k["price"]}} </h4>{% endif %}
+              			</div>
+              			{% endfor %}
+						
+              		</div>
+              		{% endfor %}
+              		<form action="" method="post">
+              		<button type="submit" class="btn btn-lg btn-warning" name="bill">Générer la facture</button>
+              	</form>
+              	</div>
+
+
+           </section>
+       </div>
+   </section>	
+
+
+{% include "footer.html" %}
