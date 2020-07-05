@@ -83,7 +83,7 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 {% if request.endpoint =="Blueprints.Dashboard" %}
-                <button class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" disabled>Activer les notification</button>
+                <button class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" disabled style="background:linear-gradient(to bottom, #ffaa00 5%, #ffa200 100%);border-radius:42px;box-shadow: 0px 10px 14px -7px #276873;padding:9px 76px;display:inline-block;font-family:Arial;font-weight:bold;color: white">Activer les notification</button>
                 <section class="subscription-details js-subscription-details is-invisible">
                 <pre hidden=""><code class="js-subscription-json"></code></pre>
                 {% endif %}
@@ -169,7 +169,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{ url_for('.AddProduct') }}"><i class="fa fa-circle-o"></i> Ajouter un produit</a></li>
-                <li><a href="{{ url_for('.AllProducts') }}"><i class="fa fa-circle-o"></i> Mes Produits</a></li>
+                <li><a href="{{ url_for('.AllProducts',id=1) }}"><i class="fa fa-circle-o"></i> Mes Produits</a></li>
                 <li><a href="{{ url_for('.Stats') }}"><i class="fa fa-circle-o"></i> Statistiques</a></li>
               </ul>
             </li>
@@ -181,11 +181,11 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{ url_for('.Orders') }}"><i class="fa fa-circle-o"></i> Commandes</a></li>
-                <li><a href="{{ url_for('.Orders') }}"><i class="fa fa-circle-o"></i> Ancien Commandes</a></li>
-                <li><a href="{{ url_for('.AddOrders') }}"><i class="fa fa-circle-o"></i>Créer</a></li>
+                <li><a href="{{ url_for('.OldOrder') }}"><i class="fa fa-circle-o"></i> Ancien Commandes</a></li>
                 
               </ul>
             </li>
+            {% if current_user.Role =='Admin' %}
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
@@ -196,6 +196,7 @@
                 <li><a href="{{ url_for('.AddUser') }}"><i class="fa fa-user-plus"></i> Ajouter un utilisateur</a></li>
                 <li><a href="{{url_for('.ManageUsers')}}"><i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
               </ul>
+
             </li>
             <li class="treeview">
               <a href="#">
@@ -207,6 +208,7 @@
                 <li><a href="{{url_for('.importe')}}"><i class="fa fa-circle-o"></i>  Importer</a></li>
               </ul>
             </li>
+            {% endif %}
             <li class="header">Déconnexion</li>
             <li><a href="{{ url_for('.logout') }}"><i class="fa fa-circle-o text-red"></i> <span>Déconnexion</span></a></li>
             </ul>

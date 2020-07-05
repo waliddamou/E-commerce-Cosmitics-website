@@ -15,13 +15,14 @@
   		<img class="card-img-top" src="{{url_for('static',filename='Uploaded_images/'+list1)}}" alt="Card image cap">
   		<div class="card-body text-center">
     		<h5 class="card-title">{{i.Name}}</h5>
+    		<p style="color: #bfa37a; "><b>{{i.SellPrice}} DA</b></p>
     		{% if not i.Qte == 0 %}	
     		<a href="#" data-id="{{i.Name}}" data-name="{{i.id}}" data-price="{{i.SellPrice}}" class="add-to-cart btn btn-warning btn-lg" data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-shopping-bag"></i></a>
     		<a  href="{{url_for('.ProductView',id=i.id)}}" class="btn btn-lg btn-warning "><i class="fa fa-shopping-cart"></i> </a>
 
     		{% else %}
 
-  <p style="color: red;">Stock épuisé</p>
+  			<p style="color: red;">Stock épuisé</p>
     		{% endif %}
   		
   		</div>
@@ -36,7 +37,7 @@
 </div>
 <div class="container-fluid text-center" style="margin-top: 50px">
 	
-	<a type="button" class="btn btn-warning" id="moin" href=""><i class="fa fa-arrow-left"></i> MOIN</a>
+	<a type="button" class="btn btn-warning" id="moin" href="" ><i class="fa fa-arrow-left"></i> MOIN</a>
 
 	<a type="button" class="btn btn-warning" id="plus" href="">PLUS <i class="fa fa-arrow-right"></i></a>
 	<script type="text/javascript">
@@ -44,7 +45,17 @@
    		document.getElementById("moin").setAttribute("href",moin);
    		var plus = $(location).prop("href").split("/").slice(0,-1).join("/") + "/" + String(parseInt(window.location.pathname.split("/").pop())+1);
    		document.getElementById("plus").setAttribute("href",plus);
-	$(location).prop("href").split("/").slice(0,-1).join("/") + "/" + String(parseInt(window.location.pathname.split("/").pop())+1)</script>
+	$(location).prop("href").split("/").slice(0,-1).join("/") + "/" + String(parseInt(window.location.pathname.split("/").pop())+1)
+	if (parseInt(window.location.pathname.split("/").pop())-1 === 0){
+		console.log(parseInt(window.location.pathname.split("/").pop())-1 === 0);
+		document.getElementById('moin').setAttribute("class","btn btn-warning disabled");
+		
+	}
+	else{
+		document.getElementById('moin').setAttribute("class","btn btn-warning enabled");
+
+	}
+</script>
 </div>
 </form>
 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

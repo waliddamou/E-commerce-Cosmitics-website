@@ -33,16 +33,20 @@
               				{% if k["name"] == i.id  %}<h4>Quantité: {{k["count"]}} </h4>{% endif %}
               			</div>
               			<div class="col-sm-4">
-              				{% if k["name"] == i.id  %}<h4>Prix unitaire: {{k["price"]}} </h4>{% endif %}
+              			{% if k["name"] == i.id  %}<h4>Prix unitaire: {{k["price"]}} </h4>{% endif %}
               			</div>
               			{% endfor %}
 						
               		</div>
               		{% endfor %}
-              		<form action="" method="post">
-              		<button type="submit" class="btn btn-lg btn-warning" name="bill">Générer la facture</button>
-              	</form>
+              		
               	</div>
+                <hr>
+                <div class="container"> 
+                <form action="" method="post">
+                  <button type="submit" class="btn btn-lg btn-warning" name="bill">Générer la facture</button>
+                </form>
+              </div>
 
 
            </section>

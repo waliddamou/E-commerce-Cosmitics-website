@@ -43,8 +43,6 @@ def sniper():
     tokens=Notification.query.all()
     if tokens:
         for i in tokens:
-            print("##########")
-            print(i.body)
             send_web_push(json.loads(i.body), message)
     return "SENDED"
     
@@ -163,13 +161,11 @@ def subscription():
 @Blueprints.route("/notification/storetoken", methods=['POST'])
 def storetoen():
     data=request.json.get('sub_token')
-    print("###########daaataaaaaaaaa")
-    print(data)
+    old=db.session.query(Notification).delete()
+    db.session.commit()
     newNotification=Notification(body=data)
     db.session.add(newNotification)
     db.session.commit()
-                
-        
     return jsonify({'success':1})
 
 
@@ -240,7 +236,7 @@ def ProductView(id):
         new_order=Order(FirstName=name,LastName=lastname,Address=adress,Phone=phone,Qte=0,products_detailes=finaldata,wilaya=wilaya,commune=commune)
         db.session.add(new_order)
         db.session.commit()
-        #sniper()
+        sniper()
     return render_template('ProductView.html', product=product,Categories=Categories,SubCategories=SubCategories,types=types)
 
 
@@ -282,8 +278,7 @@ def ViewTypeProducts(category,subcategory,types,x):
         commune = request.form["Commune"]
         adress = request.form["adress"]
         data = request.form["test"]
-        #sniper()
-        #print(sniper())
+        sniper()
         new_order = Order(FirstName=firstname,LastName=lastname,wilaya=wilaya,commune=commune,Address=adress,Phone=phone,Qte=0,products_detailes=data)
         db.session.add(new_order)
         db.session.commit()
@@ -301,9 +296,10 @@ def Dashboard():
     categories=Category.query.all()
     products=Product.query.all()
     subcategories=SubCategory.query.all()
-    orders=Order.query.all()
+    orders=Order.query.filter_by(Status="En attente").all()
     types=Type.query.all()
     users=Userr.query.all()
+    print(current_user.Role)
     return render_template('Dashboard.html',ord=ord,orders=len(orders),products=len(products),categories=len(categories),subcategories=len(subcategories),types=len(types),users=len(users))
 
 
@@ -362,13 +358,13 @@ def AddProduct():
     return render_template('add_product.html',categories=categories,subcategories=subcategories,types=types)
 
 
-@Blueprints.route('/Dashboard/all_products')
+@Blueprints.route('/Dashboard/all_products/<int:id>')
 @login_required
-def AllProducts():
+def AllProducts(id):
     if not current_user.is_authenticated:
         return redirect(url_for('.Connexion'))
     
-    products=Product.query.all()
+    products=Product.query.all()[30*(id-1):30*id]
 
     
     return render_template('all_products.html',AllProducts=products)
@@ -446,13 +442,30 @@ def Stats():
     
     return render_template('stats.html')
 
-@Blueprints.route('/Dashboard/Orders')
+@Blueprints.route('/Dashboard/Orders', methods=['GET','POST'])
 @login_required
 def Orders():
     if not current_user.is_authenticated:
         return redirect(url_for('.Connexion'))
-    Orders=Order.query.all()
+    Orders=Order.query.filter_by(Status='En attente').all()
+    if request.method == "POST" and 'valider' in request.form:
+        id_cmd=request.form.get('valider')
+        order=Order.query.filter_by(id=int(id_cmd)).first()
+        order.Status='Livré'
+        db.session.add(order)
+        db.session.commit()
+        return redirect(url_for('.Orders'))
     return render_template('Orders.html',Orders=Orders)
+
+@Blueprints.route('/Dashboard/OldOrder', methods=['GET','POST'])
+@login_required
+def OldOrder():
+    if not current_user.is_authenticated:
+        return redirect(url_for('.Connexion'))
+    old = Order.query.filter_by(Status='Livré').all()
+
+    return render_template('OldOrder.html',old=old)
+
 
 @Blueprints.route('/Dashboard/Orders/ViewOrder/<int:id>',methods=['GET','POST'])
 @login_required
@@ -481,24 +494,18 @@ def ViewOrder(id):
         return send_file(f, attachment_filename='bill.pdf')
     return render_template('ViewOrder.html',Orders=Orders,ProductDetailes=jsonstring,ProductList=ProductList)
 
-@Blueprints.route('/Dashboard/AddOrders')
+@Blueprints.route('/Dashboard/DeleteOrders/<int:id>',methods=['GET','POST'])
 @login_required
-def AddOrders():
+def DeleteOrders(id):
     if not current_user.is_authenticated:
         return redirect(url_for('.Connexion'))
-    
-    
-    return render_template('AddOrders.html')
-
-
-@Blueprints.route('/Dashboard/ManageOrders')
-@login_required
-def ManageOrders():
-    if not current_user.is_authenticated:
-        return redirect(url_for('.Connexion'))
-    
-    
-    return render_template('ManageOrders.html')
+    order=Order.query.filter_by(id=id).first()
+    if request.method =="POST":
+        db.session.delete(order)
+        db.session.commit()
+        flash(f'la commande a été supprimmer avec success','success')
+        return redirect(url_for('.Orders'))
+    return render_template('DeleteOrders.html' , order=order)
 
 @Blueprints.route('/Dashboard/AddCategory',methods=['GET','POST'])
 @login_required
@@ -829,7 +836,6 @@ def Apperences():
                     unique_filename=uuid.uuid4()
                     i.filename =str(unique_filename)+'.'+filename_extention
                     photos_list=photos_list+str(i.filename)+';'
-                    print(photos_list)
                     new_photo_list=photos_list.split(',')
                     i.save(os.path.join(UPLOAD_FOLDER, i.filename))
             for i in request.form.getlist('slide'):
