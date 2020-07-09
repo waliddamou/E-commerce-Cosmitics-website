@@ -299,7 +299,6 @@ def Dashboard():
     orders=Order.query.filter_by(Status="En attente").all()
     types=Type.query.all()
     users=Userr.query.all()
-    print(current_user.Role)
     return render_template('Dashboard.html',ord=ord,orders=len(orders),products=len(products),categories=len(categories),subcategories=len(subcategories),types=len(types),users=len(users))
 
 
