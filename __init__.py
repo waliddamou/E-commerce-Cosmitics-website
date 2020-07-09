@@ -8,7 +8,7 @@ from .Blueprints import Blueprints,Bcrypt, login_required, UPLOAD_FOLDER
 from .models import db, Userr, Category, SubCategory, Order, Product ,Type, MyAdminIndexView, MyModelView
 from flask_migrate import Migrate, MigrateCommand
 #, index_view=MyAdminIndexView()
-admin = Admin(name='Damou walid', template_mode='bootstrap3')
+admin = Admin(name='Damou walid', template_mode='bootstrap3',index_view=MyAdminIndexView())
 migrate = Migrate()
 def create_app():
     app=Flask(__name__)
@@ -29,12 +29,12 @@ def create_app():
         login_manager.session_protection = "strong"
         Bcrypt.init_app(app)
         admin.init_app(app)
-        admin.add_view(MyAdminIndexView(Userr, db.session))
-        admin.add_view(MyAdminIndexView(Product, db.session))
-        admin.add_view(MyAdminIndexView(Category, db.session))
-        admin.add_view(MyAdminIndexView(SubCategory, db.session))
-        admin.add_view(MyAdminIndexView(Type, db.session))
-        admin.add_view(MyAdminIndexView(Order, db.session))
+        admin.add_view(ModelView(Userr, db.session))
+        admin.add_view(ModelView(Product, db.session))
+        admin.add_view(ModelView(Category, db.session))
+        admin.add_view(ModelView(SubCategory, db.session))
+        admin.add_view(ModelView(Type, db.session))
+        admin.add_view(ModelView(Order, db.session))
         login_manager.login_view = ".Connexion"
 
     @login_manager.user_loader
