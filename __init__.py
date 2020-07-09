@@ -13,7 +13,7 @@ migrate = Migrate()
 def create_app():
     app=Flask(__name__)
     app.register_blueprint(Blueprints)
-    app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:test@localhost/BodyCare'
+    app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:Pythonscript123@@localhost/BodyCare'
     app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER 
     app.config['SECRET_KEY']="G:\x8d\xa5q\xec\xa9\xc3\x86v\tmMV\xcd\x15\xb8#\x07B\xcb\xbc\\\xfd\x1d\x07$p\xcd]\xc4qC\xf7 \xca(\xff\xc9\xcd\xea\xe3\xc3\x07[\x03\xdaef\xcc<q\xe8Pi:\xaab.\x8f\x03Z{\xab"
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
