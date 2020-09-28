@@ -353,7 +353,7 @@ def AddProduct():
                 db.session.add(product)
                 db.session.commit()
                 flash(f"Le Produit a été Ajouté ", "success")
-                return redirect(url_for('.AllProducts'))
+                return redirect(url_for('.AllProducts',id=1))
     return render_template('add_product.html',categories=categories,subcategories=subcategories,types=types)
 
 
@@ -428,7 +428,7 @@ def DeleteProduct(id):
         db.session.delete(product)
         db.session.commit()
         flash(f'le produit a été supprimer','warning')
-        return redirect(url_for('.AllProducts'))
+        return redirect(url_for('.AllProducts',id=1))
     return render_template("DeleteProduct.html",product=product)
 
 
